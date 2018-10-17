@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.Vector2;
  */
 public class Consts {
     public static final int WINDOW_WIDTH = 800; // overall game window width
-    public static final int WINDOW_HEIGHT = 480; // overall game window height
+    public static final int WINDOW_HEIGHT = 400; // overall game window height
 
     public static final Vector2 WORLD_GRAVITY = new Vector2(0, -10);
 

@@ -6,7 +6,7 @@ import photo.heller.game.box2d.UserData;
 
 public class Runner extends GameActor {
 
-    private boolean mIsJumping;
+    private boolean mIsJumping = false;
 
     public Runner(Body xBody) {
         super(xBody);
@@ -29,4 +29,7 @@ public class Runner extends GameActor {
         mIsJumping = false;
     }
 
+    public boolean isJumping() {
+        return mIsJumping;
+    }
 }

@@ -7,12 +7,12 @@ import photo.heller.game.box2d.UserData;
 public abstract class GameActor extends Actor {
 
     protected Body mBody;
-    protected UserData mUserData;
+    protected Object mUserData;
 
     public GameActor(Body xBody) {
         if (xBody != null) {
             mBody = xBody;
-            mUserData = (UserData) xBody.getUserData();
+            mUserData = xBody.getUserData();
         } else {
             System.err.println("GameActor::CTOR: GameActory body == null");
         }

@@ -16,13 +16,13 @@ public class WorldFactory {
     public static Body createGround(World xWorld) {
         BodyDef bodyDef = new BodyDef();
         bodyDef.position.set(new Vector2(Consts.GROUND_X, Consts.GROUND_Y));
-        Body b = xWorld.createBody(bodyDef);
+        Body body = xWorld.createBody(bodyDef);
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(Consts.GROUND_WIDTH / 2, Consts.GROUND_HEIGHT / 2);
-        b.createFixture(shape, Consts.GROUND_DENSITY);
-        b.setUserData(new GroundUserData());
+        body.createFixture(shape, Consts.GROUND_DENSITY);
+        body.setUserData(new GroundUserData());
         shape.dispose();
-        return b;
+        return body;
     }
 
     public static Body createRunner(World xWorld) {

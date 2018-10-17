@@ -37,6 +37,7 @@ public class GameStage extends Stage implements ContactListener {
 
     private void setupWorld() {
         mWorld = WorldFactory.createWorld();
+        mWorld.setContactListener(this);
         setupGround();
         setupRunner();
     }
@@ -64,7 +65,6 @@ public class GameStage extends Stage implements ContactListener {
     @Override
     public boolean keyDown(int keyCode) {
         if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
-            Gdx.app.log(TAG, "KEYDOWN == SPACE");
             mRunner.jump();
         }
         return super.keyDown(keyCode);
@@ -93,11 +93,8 @@ public class GameStage extends Stage implements ContactListener {
 
     @Override
     public void beginContact(Contact xContact) {
-        Gdx.app.log(TAG, "IN BEGIN CONTACT");
         Body a = xContact.getFixtureA().getBody();
         Body b = xContact.getFixtureB().getBody();
-        Gdx.app.log(TAG, "a == runner " + BodyUtils.bodyIsRunner(a));
-        Gdx.app.log(TAG, "b == ground " + BodyUtils.bodyIsGround(b));
         if ((BodyUtils.bodyIsRunner(a) && BodyUtils.bodyIsGround(b)) ||
                 (BodyUtils.bodyIsGround(a) && BodyUtils.bodyIsRunner(b))) {
             mRunner.landed();
