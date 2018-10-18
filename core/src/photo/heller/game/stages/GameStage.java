@@ -63,9 +63,20 @@ public class GameStage extends Stage implements ContactListener {
     }
 
     @Override
+    public boolean keyUp(int keyCode) {
+        if (keyCode == Input.Keys.A || keyCode == Input.Keys.D) {
+            mRunner.stopDodge();
+        }
+        return super.keyUp(keyCode);
+    }
+
+    @Override
     public boolean keyDown(int keyCode) {
         if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
             mRunner.jump();
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.A) || Gdx.input.isKeyPressed(Input.Keys.D)) {
+            mRunner.dodge();
         }
         return super.keyDown(keyCode);
     }

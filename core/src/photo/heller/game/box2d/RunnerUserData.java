@@ -7,6 +7,8 @@ import photo.heller.game.utils.Consts;
 public class RunnerUserData extends UserData {
 
     private Vector2 mJumpingLinearImpulse;
+    private final Vector2 mRunningPosition = new Vector2(Consts.RUNNER_X, Consts.RUNNER_Y);
+    private final Vector2 mDodgePosition = new Vector2(Consts.RUNNER_DODGE_X, Consts.RUNNER_DODGE_Y);
 
     public RunnerUserData() {
         super();
@@ -20,5 +22,15 @@ public class RunnerUserData extends UserData {
 
     public void setJumpingLinearImpulse(Vector2 xJumpingLinearImpulse) {
         mJumpingLinearImpulse = xJumpingLinearImpulse;
+    }
+    public float getDodgeAngle() {
+        return (float) (-90f * (Math.PI / 180f));
+    }
+    public Vector2 getRunningPosition() {
+        return mRunningPosition;
+    }
+
+    public Vector2 getDodgePosition() {
+        return mDodgePosition;
     }
 }

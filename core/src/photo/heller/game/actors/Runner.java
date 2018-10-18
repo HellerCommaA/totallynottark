@@ -7,7 +7,7 @@ import photo.heller.game.box2d.UserData;
 public class Runner extends GameActor {
 
     private boolean mIsJumping = false;
-
+    private boolean mIsDodging = false;
     public Runner(Body xBody) {
         super(xBody);
     }
@@ -18,7 +18,7 @@ public class Runner extends GameActor {
     }
 
     public void jump() {
-        if (!mIsJumping) {
+        if (!mIsJumping || !mIsDodging) {
             RunnerUserData r = (RunnerUserData) mBody.getUserData();
             mBody.applyLinearImpulse(r.getJumpingLinearImpulse(), mBody.getWorldCenter(), true);
             mIsJumping = true;
@@ -29,7 +29,22 @@ public class Runner extends GameActor {
         mIsJumping = false;
     }
 
-    public boolean isJumping() {
-        return mIsJumping;
+    public void dodge() {
+        if (!mIsJumping) {
+            RunnerUserData r = (RunnerUserData) mBody.getUserData();
+            mBody.setTransform(r.getDodgePosition(), r.getDodgeAngle());
+            mIsDodging = true;
+        }
     }
+
+    public void stopDodge() {
+        mIsDodging = false;
+        RunnerUserData r = (RunnerUserData) mBody.getUserData();
+        mBody.setTransform(r.getRunningPosition(), 0f);
+    }
+
+    public boolean isDodging() {
+        return mIsDodging;
+    }
+
 }
